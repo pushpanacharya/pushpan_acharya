@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Pushpan Acharya | Portfolio</title>
+  <title>Pushpan Acharya</title>
 
   <style>
     * {
@@ -21,18 +20,60 @@
       overflow-x: hidden;
     }
 
+    /* Animated background */
+    body::before {
+      content: "";
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      background: #00eaff;
+      filter: blur(180px);
+      opacity: 0.12;
+      top: -150px;
+      left: -150px;
+      animation: moveGlow 8s infinite alternate;
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      width: 450px;
+      height: 450px;
+      background: #7a00ff;
+      filter: blur(180px);
+      opacity: 0.12;
+      bottom: -150px;
+      right: -150px;
+      animation: moveGlow2 10s infinite alternate;
+      z-index: -2;
+    }
+
+    @keyframes moveGlow {
+      from { transform: translate(0,0); }
+      to { transform: translate(250px,150px); }
+    }
+
+    @keyframes moveGlow2 {
+      from { transform: translate(0,0); }
+      to { transform: translate(-200px,-150px); }
+    }
+
     /* NAVBAR */
+
     nav {
       position: fixed;
       top: 0;
+      left: 0;
       width: 100%;
       padding: 20px 8%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(0,0,0,0.7);
-      backdrop-filter: blur(10px);
+      background: rgba(5,5,5,0.65);
+      backdrop-filter: blur(15px);
       z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
     }
 
     .logo {
@@ -41,192 +82,263 @@
     }
 
     .logo span {
-      color: #00ffff;
+      color: #00eaff;
     }
 
     nav a {
-      color: white;
+      color: #ddd;
       text-decoration: none;
-      margin-left: 20px;
-      font-size: 14px;
+      margin-left: 25px;
+      transition: 0.3s;
     }
 
     nav a:hover {
-      color: #00ffff;
+      color: #00eaff;
     }
 
     /* HERO */
+
     .hero {
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 100px 20px 50px;
-      background:
-        radial-gradient(circle at top, #123, transparent 45%),
-        #050505;
+      padding: 120px 20px 60px;
+      position: relative;
+    }
+
+    .hero-content {
+      animation: fadeUp 1.2s ease;
+      max-width: 850px;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* PROFILE */
+
+    .profile-box {
+      width: 190px;
+      height: 190px;
+      margin: auto;
+      padding: 6px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #00eaff, #7a00ff, #00eaff);
+      background-size: 300% 300%;
+      animation: gradientMove 4s infinite;
+      box-shadow:
+        0 0 30px rgba(0,234,255,0.4),
+        0 0 80px rgba(122,0,255,0.2);
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .profile {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      border: 4px solid #00ffff;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      box-shadow: 0 0 40px #00ffff;
-      margin-bottom: 25px;
+      border-radius: 50%;
+      background: #111;
+    }
+
+    .hello {
+      margin-top: 30px;
+      color: #aaa;
+      font-size: 18px;
+      letter-spacing: 2px;
     }
 
     .hero h1 {
-      font-size: 60px;
-      margin-bottom: 10px;
+      font-size: clamp(45px, 8vw, 85px);
+      margin: 10px 0;
+      font-weight: 800;
+      letter-spacing: -3px;
     }
 
     .hero h1 span {
-      color: #00ffff;
+      background: linear-gradient(90deg,#00eaff,#8b5cff,#00eaff);
+      -webkit-background-clip: text;
+      color: transparent;
+      background-size: 200%;
+      animation: textGradient 3s infinite;
     }
 
-    .hero p {
-      font-size: 20px;
+    @keyframes textGradient {
+      0% { background-position: 0%; }
+      50% { background-position: 100%; }
+      100% { background-position: 0%; }
+    }
+
+    .typing {
+      font-size: 22px;
       color: #aaa;
-      margin-bottom: 30px;
+      min-height: 30px;
+      margin: 15px 0 35px;
+    }
+
+    .typing span {
+      color: #00eaff;
+    }
+
+    /* BUTTONS */
+
+    .buttons {
+      margin-top: 20px;
     }
 
     .btn {
       display: inline-block;
-      padding: 13px 28px;
-      margin: 5px;
-      border-radius: 30px;
-      border: 1px solid #00ffff;
-      color: white;
+      padding: 14px 30px;
+      margin: 7px;
+      border-radius: 40px;
       text-decoration: none;
-      transition: 0.3s;
+      color: white;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      transition: 0.4s;
+    }
+
+    .btn.primary {
+      background: #00eaff;
+      color: #000;
+      border-color: #00eaff;
+      font-weight: bold;
     }
 
     .btn:hover {
-      background: #00ffff;
-      color: black;
-      box-shadow: 0 0 25px #00ffff;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 35px rgba(0,234,255,0.3);
+    }
+
+    .btn.primary:hover {
+      background: white;
+      border-color: white;
+    }
+
+    /* SCROLL */
+
+    .scroll {
+      position: absolute;
+      bottom: 25px;
+      color: #777;
+      font-size: 13px;
+      letter-spacing: 2px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(10px); }
     }
 
     /* SECTIONS */
-    section {
-      padding: 100px 10%;
+
+    section:not(.hero) {
+      padding: 110px 10%;
       text-align: center;
     }
 
     .title {
-      font-size: 40px;
-      margin-bottom: 40px;
+      font-size: 45px;
+      margin-bottom: 45px;
     }
 
     .title span {
-      color: #00ffff;
+      color: #00eaff;
     }
 
-    /* ABOUT */
-    .about {
-      max-width: 800px;
-      margin: auto;
-      color: #bbb;
-      line-height: 1.8;
-      font-size: 18px;
-    }
+    /* GLASS CARDS */
 
-    /* SKILLS */
-    .skills {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .skill {
-      width: 180px;
-      padding: 30px 15px;
-      border: 1px solid #222;
-      border-radius: 15px;
-      background: #0d0d0d;
-      transition: 0.3s;
-    }
-
-    .skill:hover {
-      transform: translateY(-10px);
-      border-color: #00ffff;
-      box-shadow: 0 0 20px rgba(0,255,255,0.3);
-    }
-
-    .skill h3 {
-      margin-bottom: 10px;
-      color: #00ffff;
-    }
-
-    .skill p {
-      color: #aaa;
-    }
-
-    /* PROJECTS */
-    .projects {
+    .card-container {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       gap: 25px;
     }
 
-    .project {
+    .card {
       width: 280px;
-      padding: 30px;
-      background: #0d0d0d;
-      border-radius: 15px;
-      border: 1px solid #222;
-      transition: 0.3s;
+      padding: 35px 25px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(15px);
+      transition: 0.5s;
     }
 
-    .project:hover {
-      transform: translateY(-10px);
-      border-color: #00ffff;
+    .card:hover {
+      transform: translateY(-12px) scale(1.02);
+      border-color: #00eaff;
+      box-shadow: 0 15px 50px rgba(0,234,255,0.15);
     }
 
-    .project h3 {
-      color: #00ffff;
+    .card h3 {
+      color: #00eaff;
       margin-bottom: 15px;
+      font-size: 22px;
     }
 
-    .project p {
+    .card p {
+      color: #999;
+      line-height: 1.7;
+    }
+
+    /* ABOUT */
+
+    .about-text {
+      max-width: 750px;
+      margin: auto;
       color: #aaa;
-      line-height: 1.6;
+      font-size: 18px;
+      line-height: 1.9;
     }
 
     /* SOCIAL */
+
     .social a {
       display: inline-block;
-      margin: 10px;
-      padding: 12px 20px;
-      border: 1px solid #333;
-      border-radius: 25px;
+      margin: 8px;
+      padding: 13px 23px;
+      border-radius: 30px;
       color: white;
       text-decoration: none;
+      border: 1px solid #333;
+      transition: 0.3s;
     }
 
     .social a:hover {
-      border-color: #00ffff;
-      color: #00ffff;
+      color: #00eaff;
+      border-color: #00eaff;
+      transform: translateY(-5px);
     }
 
-    /* FOOTER */
     footer {
-      padding: 30px;
       text-align: center;
-      color: #777;
+      padding: 30px;
       border-top: 1px solid #222;
+      color: #666;
     }
 
     /* MOBILE */
-    @media(max-width: 600px) {
+
+    @media(max-width:700px) {
 
       nav {
-        padding: 15px;
+        padding: 18px 5%;
       }
 
       nav a {
@@ -234,21 +346,21 @@
         font-size: 11px;
       }
 
+      .profile-box {
+        width: 150px;
+        height: 150px;
+      }
+
       .hero h1 {
-        font-size: 40px;
+        letter-spacing: -2px;
       }
 
-      .hero p {
-        font-size: 16px;
-      }
-
-      .profile {
-        width: 140px;
-        height: 140px;
+      .typing {
+        font-size: 17px;
       }
 
       .title {
-        font-size: 32px;
+        font-size: 35px;
       }
     }
   </style>
@@ -257,80 +369,112 @@
 <body>
 
   <!-- NAVBAR -->
+
   <nav>
-    <div class="logo">Pushpan<span>.</span></div>
+    <div class="logo">
+      Pushpan<span>.</span>
+    </div>
 
     <div>
       <a href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
-      <a href="#projects">Work</a>
       <a href="#contact">Contact</a>
     </div>
   </nav>
 
 
-  <!-- HOME -->
+  <!-- HERO -->
+
   <section class="hero" id="home">
 
-    <!-- पछि यहाँ आफ्नो फोटो राख्ने -->
-    <img
-      class="profile"
-      src="https://via.placeholder.com/180"
-      alt="Pushpan Acharya">
+    <div class="hero-content">
 
-    <h1>Hello, I'm <span>Pushpan</span> 👋</h1>
+      <div class="profile-box">
+        <img
+          class="profile"
+          src="https://via.placeholder.com/400"
+          alt="Pushpan Acharya">
+      </div>
 
-    <p>
-      Digital Marketing Enthusiast • Creative Mind • Future Entrepreneur
-    </p>
+      <div class="hello">
+        WELCOME TO MY WORLD
+      </div>
 
-    <a class="btn" href="#about">Explore My World</a>
-    <a class="btn" href="#contact">Contact Me</a>
+      <h1>
+        I'm <span>Pushpan</span>
+      </h1>
+
+      <div class="typing">
+        <span id="typing"></span>
+      </div>
+
+      <div class="buttons">
+        <a href="#about" class="btn primary">
+          Explore Me ↓
+        </a>
+
+        <a href="#contact" class="btn">
+          Let's Connect
+        </a>
+      </div>
+
+    </div>
+
+    <div class="scroll">
+      SCROLL DOWN ↓
+    </div>
 
   </section>
 
 
   <!-- ABOUT -->
+
   <section id="about">
 
-    <h2 class="title">About <span>Me</span></h2>
+    <h2 class="title">
+      About <span>Me</span>
+    </h2>
 
-    <p class="about">
-      Hi, I'm Pushpan Acharya. I am passionate about digital marketing,
-      creativity, technology and learning new things. I love exploring
-      new ideas, creating digital experiences and developing my skills
-      to build something meaningful.
+    <p class="about-text">
+      Hi, I'm Pushpan Acharya. I'm passionate about digital marketing,
+      creativity, technology and learning new things. I enjoy turning
+      ideas into creative digital experiences and continuously
+      improving myself.
     </p>
 
   </section>
 
 
   <!-- SKILLS -->
+
   <section id="skills">
 
-    <h2 class="title">My <span>Skills</span></h2>
+    <h2 class="title">
+      My <span>Skills</span>
+    </h2>
 
-    <div class="skills">
+    <div class="card-container">
 
-      <div class="skill">
-        <h3>Digital Marketing</h3>
-        <p>Social Media & Online Marketing</p>
+      <div class="card">
+        <h3>🚀 Digital Marketing</h3>
+        <p>
+          Digital strategies, social media marketing and online branding.
+        </p>
       </div>
 
-      <div class="skill">
-        <h3>SEO</h3>
-        <p>Search Engine Optimization</p>
+      <div class="card">
+        <h3>📈 SEO</h3>
+        <p>
+          Search optimization and strategies for better online visibility.
+        </p>
       </div>
 
-      <div class="skill">
-        <h3>Content</h3>
-        <p>Creative Content & Branding</p>
-      </div>
-
-      <div class="skill">
-        <h3>Design</h3>
-        <p>Creative Visual Ideas</p>
+      <div class="card">
+        <h3>🎨 Creativity</h3>
+        <p>
+          Creative ideas, content creation and modern digital concepts.
+        </p>
       </div>
 
     </div>
@@ -338,31 +482,34 @@
   </section>
 
 
-  <!-- PROJECTS -->
-  <section id="projects">
+  <!-- WORK -->
 
-    <h2 class="title">My <span>Work</span></h2>
+  <section>
 
-    <div class="projects">
+    <h2 class="title">
+      My <span>Work</span>
+    </h2>
 
-      <div class="project">
-        <h3>Digital Marketing</h3>
+    <div class="card-container">
+
+      <div class="card">
+        <h3>Digital Projects</h3>
         <p>
-          Social media campaigns, branding and digital marketing projects.
+          Creative digital marketing and branding projects.
         </p>
       </div>
 
-      <div class="project">
-        <h3>Portfolio Website</h3>
+      <div class="card">
+        <h3>Portfolio</h3>
         <p>
-          A modern personal portfolio website created using HTML and CSS.
+          Building modern websites and digital experiences.
         </p>
       </div>
 
-      <div class="project">
-        <h3>Creative Projects</h3>
+      <div class="card">
+        <h3>Future Projects</h3>
         <p>
-          Creative ideas, content creation and personal projects.
+          More exciting ideas and projects coming soon.
         </p>
       </div>
 
@@ -372,12 +519,15 @@
 
 
   <!-- CONTACT -->
+
   <section id="contact">
 
-    <h2 class="title">Let's <span>Connect</span> 🚀</h2>
+    <h2 class="title">
+      Let's <span>Connect</span> 🚀
+    </h2>
 
-    <p style="color:#aaa; margin-bottom:25px;">
-      Follow me or get in touch with me.
+    <p style="color:#888; margin-bottom:30px;">
+      Find me on social media
     </p>
 
     <div class="social">
@@ -392,10 +542,62 @@
   </section>
 
 
-  <!-- FOOTER -->
   <footer>
-    © 2026 Pushpan Acharya. All Rights Reserved.
+    © 2026 Pushpan Acharya • Built with passion.
   </footer>
+
+
+  <!-- TYPING ANIMATION -->
+
+  <script>
+
+    const words = [
+      "Digital Marketer 🚀",
+      "Creative Thinker ✨",
+      "Content Creator 🎨",
+      "Future Entrepreneur 💡"
+    ];
+
+    let wordIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    function typeEffect() {
+
+      const typing = document.getElementById("typing");
+      const word = words[wordIndex];
+
+      if (!deleting) {
+        typing.textContent = word.substring(0, charIndex + 1);
+        charIndex++;
+
+        if (charIndex === word.length) {
+          deleting = true;
+          setTimeout(typeEffect, 1500);
+          return;
+        }
+
+      } else {
+
+        typing.textContent = word.substring(0, charIndex - 1);
+        charIndex--;
+
+        if (charIndex === 0) {
+          deleting = false;
+          wordIndex++;
+
+          if (wordIndex === words.length) {
+            wordIndex = 0;
+          }
+        }
+      }
+
+      setTimeout(typeEffect, deleting ? 50 : 90);
+    }
+
+    typeEffect();
+
+  </script>
 
 </body>
 </html>
